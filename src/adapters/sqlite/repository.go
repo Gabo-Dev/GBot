@@ -1,6 +1,6 @@
 package sqlite
 
-import "gbot/src/core/tasks"
+import "gbot-wails/src/core/tasks"
 
 // Repository implements tasks.TaskPort using SQLite.
 type Repository struct {

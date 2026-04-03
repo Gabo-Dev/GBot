@@ -108,16 +108,16 @@ Each feature is a self-contained "hexagon" with its own ports, entities, and ada
 ```
 src/
 ├── core/
-│   └── tasks/                    # Hexágono de Tareas (Vertical Slice)
-│       ├── task.go               # Entidad
-│       ├── task-service.go       # Lógica de negocio (hexágono)
-│       ├── task-port.go          # Puerto (interfaz)
-│       └── task-repository.go    # Adaptador driven (SQLite)
-│   └── ai/                       # Hexágono de IA
+│   └── tasks/                    # Tasks hexagon (Vertical Slice)
+│       ├── task.go               # Entity
+│       ├── task-service.go       # Business logic (hexagon)
+│       ├── task-port.go          # Port (interface)
+│       └── task-repository.go    # Driven adapter (SQLite)
+│   └── ai/                       # AI hexagon
 │       ├── ai-service.go
 │       ├── ai-port.go
 │       └── ...
-└── adapters/                     # Adaptadores compartidos
+└── adapters/                     # Shared adapters
     ├── github-models/
     └── sqlite/
 ```
@@ -126,17 +126,17 @@ src/
 
 ```
 frontend/src/
-├── core/                         # Lógica de negocio pura (independiente de React)
-│   └── tasks/                    # Hexágono de Tareas
-│       ├── task.ts               # Entidad
-│       ├── task-service.ts       # Lógica de negocio
-│       ├── task-port.ts          # Puerto (interfaz)
-│       └── task-repository.ts    # Adaptador driven
-├── adapters/                     # Adaptadores compartidos
+├── core/                         # Pure business logic (React-independent)
+│   └── tasks/                    # Tasks hexagon
+│       ├── task.ts               # Entity
+│       ├── task-service.ts       # Business logic
+│       ├── task-port.ts          # Port (interface)
+│       └── task-repository.ts    # Driven adapter
+├── adapters/                     # Shared adapters
 │   ├── api/                      # GitHub Models, HTTP clients
-│   ├── storage/                  # SQLite (vía Wails)
+│   ├── storage/                  # SQLite (via Wails)
 │   └── wails/                    # Runtime bindings
-└── ui/                           # React — presentación y coordinación
+└── ui/                           # React — presentation and coordination only
     ├── components/               # 🧱 Presentacionales: Solo props → JSX. Sin estado, sin lógica.
     ├── containers/               # 💡 Inteligentes: Estado, casos de uso, orquestación.
     ├── hooks/                    # 🪝 Custom Hooks: Lógica de UI reutilizable.

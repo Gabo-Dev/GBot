@@ -1,7 +1,10 @@
-import type { Task } from './task'
+import type { Task } from "@core/tasks/task";
+import type { Result } from "@core/types/result";
 
 export interface TaskPort {
-  getAll(): Promise<Task[]>
-  save(task: Task): Promise<void>
-  delete(id: string): Promise<void>
+  getAllTasks(): Promise<Result<Task[]>>;
+  getTask(id: string): Promise<Result<Task>>;
+  saveTask(task: Task): Promise<Result<Task>>;
+  updateTask(task: Task): Promise<Result<Task>>;
+  deleteTask(id: string): Promise<Result<Task>>;
 }

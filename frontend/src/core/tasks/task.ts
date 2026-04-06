@@ -2,5 +2,5 @@ export interface Task {
   id: string
   title: string
   completed: boolean
-  createdAt: Date
+  createdAt: number // Unix timestamp para compatibilidad con Wails
 }

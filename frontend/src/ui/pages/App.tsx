@@ -1,5 +1,7 @@
+import { TaskManager } from "@ui/containers/TaskManager";
+
 function App() {
-  return <h1>GBot</h1>
+  return <TaskManager />;
 }
 
-export default App
+export default App;

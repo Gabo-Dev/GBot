@@ -13,11 +13,15 @@ export class WailsTaskAdapter implements TaskPort {
   async getAllTasks(): Promise<Result<Task[]>> {
     try {
       const tasks = await GetAllTasks();
-      return { success: true, data: tasks };
+      return { success: true, data: tasks ?? [] };
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : "Failed to fetch tasks",
+        error: {
+          message:
+            error instanceof Error ? error.message : "Failed to fetch tasks",
+          code: "FETCH_TASKS_FAILED",
+        },
       };
     }
   }
@@ -29,7 +33,11 @@ export class WailsTaskAdapter implements TaskPort {
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : "Failed to save task",
+        error: {
+          message:
+            error instanceof Error ? error.message : "Failed to save task",
+          code: "SAVE_TASK_FAILED",
+        },
       };
     }
   }
@@ -41,7 +49,11 @@ export class WailsTaskAdapter implements TaskPort {
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : "Failed to get task",
+        error: {
+          message:
+            error instanceof Error ? error.message : "Failed to get task",
+          code: "GET_TASK_FAILED",
+        },
       };
     }
   }
@@ -53,8 +65,11 @@ export class WailsTaskAdapter implements TaskPort {
     } catch (error) {
       return {
         success: false,
-        error:
-          error instanceof Error ? error.message : "Failed to update the task",
+        error: {
+          message:
+            error instanceof Error ? error.message : "Failed to update task",
+          code: "UPDATE_TASK_FAILED",
+        },
       };
     }
   }
@@ -66,8 +81,11 @@ export class WailsTaskAdapter implements TaskPort {
     } catch (error) {
       return {
         success: false,
-        error:
-          error instanceof Error ? error.message : "Failed to delete the Task",
+        error: {
+          message:
+            error instanceof Error ? error.message : "Failed to delete task",
+          code: "DELETE_TASK_FAILED",
+        },
       };
     }
   }
